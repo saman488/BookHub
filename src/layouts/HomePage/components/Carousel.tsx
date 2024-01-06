@@ -9,12 +9,12 @@ export const Carousel = () => {
                 <h3>Find your next "I stayed up too late reading" book.</h3>
             </div>
 
-            <div id='carouselExampleControls' className='carousel carousel-dark slide mt-5 d-noned-lg-block' data-bs-interval='false'>
+            <div id='carouselExampleControls' className='carousel carousel-dark slide mt-5 d-none d-lg-block' data-bs-interval='false'>
 
                 {/* Desktop */}
                 <div className='carousel-inner'>
                     <div className='carousel-item active'>
-                        <div className='row d-felx justify-content-center align-item-center '>
+                        <div className='row d-felx justify-content-center align-items-center '>
                             <ReturnBook />
                             <ReturnBook />
                             <ReturnBook />
@@ -45,11 +45,11 @@ export const Carousel = () => {
 
                 <button className='carousel-control-prev' type='button' data-bs-target='#carouselExampleControls' data-bs-slide='prev'>
                     <span className='carousel-control-prev-icon' aria-hidden='true' ></span>
-                    <span className='visually-hiden'>Previous</span>
+                    <span className='visually-hidden'>Previous</span>
                 </button>
                 <button className='carousel-control-next' type='button' data-bs-target='#carouselExampleControls' data-bs-slide='next'>
-                    <span className='carousel-control-next-icon' aria-hidden='true' ></span>
-                    <span className='visually-hiden'>Next</span>
+                    <span className='carousel-control-next-icon' aria-hidden='true'></span>
+                    <span className='visually-hidden'>Next</span>
                 </button>
 
             </div>
@@ -61,7 +61,7 @@ export const Carousel = () => {
                 </div>
             </div>
             <div className='HomePage-carousel-title mt-3'>
-                <a className='btn btn-outline-secondery btn-lg' href='#'>View More</a>
+                <a className='btn btn-outline-secondary btn-lg' href='#'>View More</a>
             </div>
         </div>
 
