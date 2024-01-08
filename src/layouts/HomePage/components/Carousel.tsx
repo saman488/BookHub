@@ -52,6 +52,22 @@ export const Carousel = () => {
 
     }, [])
 
+    if (isLoading) {
+        return (
+            <div className='container m-5'>
+                <p>Loading...</p>
+            </div>
+        )
+    }
+
+    if (httperror) {
+        return (
+            <div className='conatiner'>
+                <p>{httperror}</p>
+            </div>
+        )
+    }
+
     return (
         <div className='container mt-5' style={{ height: 550 }}>
 
