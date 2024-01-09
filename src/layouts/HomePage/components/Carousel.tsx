@@ -1,12 +1,13 @@
 import { ReturnBook } from "./ReturnBook";
 import { useEffect, useState } from "react";
 import BookModel from "../../../models/BookModel";
-import { error } from "console";
+import { SpinnerLoading } from "../../Utils/SpinnerLoading";
+
 
 export const Carousel = () => {
     const [books, setBooks] = useState<BookModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [httperror, setHttpError] = useState(null);
+    const [httpError, setHttpError] = useState(null);
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -14,9 +15,10 @@ export const Carousel = () => {
 
             const url: string = `${baseUrl}?page=0&size=9`;
 
+
             const response = await fetch(url);
 
-            if (response.ok) {
+            if (!response.ok) {
                 throw new Error('Something went wrong');
 
             }
@@ -37,7 +39,7 @@ export const Carousel = () => {
                     copies: responseData[key].copies,
                     copiesAvailabale: responseData[key].copiesAvailabale,
                     category: responseData[key].category,
-                    img: responseData[key].img
+                    img: responseData[key].img,
                 });
             }
 
@@ -54,16 +56,14 @@ export const Carousel = () => {
 
     if (isLoading) {
         return (
-            <div className='container m-5'>
-                <p>Loading...</p>
-            </div>
+            <SpinnerLoading />
         )
     }
 
-    if (httperror) {
+    if (httpError) {
         return (
-            <div className='conatiner'>
-                <p>{httperror}</p>
+            <div className='conatiner m-5'>
+                <p>{httpError}</p>
             </div>
         )
     }
@@ -80,30 +80,31 @@ export const Carousel = () => {
                 {/* Desktop */}
                 <div className='carousel-inner'>
                     <div className='carousel-item active'>
-                        <div className='row d-felx justify-content-center align-items-center '>
-                            <ReturnBook />
-                            <ReturnBook />
-                            <ReturnBook />
+                        <div className='row d-flex justify-content-center align-items-center '>
+                            {books.slice(0, 3).map(book => (
+                                <ReturnBook book={book} key={book.id} />
+                            ))}
+
 
                         </div>
 
                     </div>
 
                     <div className='carousel-item '>
-                        <div className='row d-felx justify-content-center align-item-center '>
-                            <ReturnBook />
-                            <ReturnBook />
-                            <ReturnBook />
+                        <div className='row d-flex justify-content-center align-item-center '>
+                            {books.slice(3, 6).map(book => (
+                                <ReturnBook book={book} key={book.id} />
+                            ))}
 
                         </div>
 
                     </div>
 
                     <div className='carousel-item '>
-                        <div className='row d-felx justify-content-center align-item-center '>
-                            <ReturnBook />
-                            <ReturnBook />
-                            <ReturnBook />
+                        <div className='row d-flex justify-content-center align-item-center '>
+                            {books.slice(6, 9).map(book => (
+                                <ReturnBook book={book} key={book.id} />
+                            ))}
                         </div>
 
                     </div>
@@ -123,7 +124,7 @@ export const Carousel = () => {
             {/* Mobile */}
             <div className='d-lg-none mt-3'>
                 <div className='row d-flex justify-content-center align-items-center'>
-                    <ReturnBook />
+                    <ReturnBook book={books[7]} key={books[7].id} />
                 </div>
             </div>
             <div className='HomePage-carousel-title mt-3'>
